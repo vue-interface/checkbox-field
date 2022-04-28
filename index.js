@@ -1,2 +1,5 @@
-import CheckboxField from './src/CheckboxField';
-export default CheckboxField;
+import CheckboxField from './src/CheckboxField.vue';
+
+export {
+    CheckboxField
+};

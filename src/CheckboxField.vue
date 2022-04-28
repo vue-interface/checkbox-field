@@ -1,5 +1,5 @@
 <template>
-    <div :class="{'custom-checkbox': custom, [controlClass]: !!controlClass, [inlineClass]: inline}">
+    <div :class="{[controlClass]: !!controlClass, [inlineClass]: inline}">
         <input
             :id="$attrs.id || hash"
             ref="field"
@@ -7,8 +7,8 @@
             v-bind="controlAttributes"
             type="checkbox"
             :value="value"
-            :checked="checked || isChecked(value)"
-            @input="update">
+            :checked="isChecked(value)"
+            @change="update">
 
         <label :for="$attrs.id || hash" :class="{[computedLabelClass]: true, [labelClass]: true}">
             <slot>{{ label }}</slot>
@@ -36,13 +36,15 @@
 </template>
 
 <script>
-import RadioField from '@vue-interface/radio-field';
+import { FormControl } from '@vue-interface/form-control';
 
 export default {
 
     name: 'CheckboxField',
 
-    extends: RadioField,
+    mixins: [
+        FormControl
+    ],
 
     model: {
         prop: 'checkedValues',
@@ -50,91 +52,104 @@ export default {
     },
 
     props: {
-
-        checked: Boolean,
+        /**
+         * An array of event names that correlate with callback functions
+         *
+         * @property Function
+         */
+        bindEvents: {
+            type: Array,
+            default() {
+                return ['focus', 'blur', 'input', 'click', 'keyup', 'keydown', 'progress'];
+            }
+        },
 
         /**
          * The checked values
          *
          * @property String
          */
-        checkedValues: {
-            type: Array,
-            default() {
-                return [];
-            }
-        },
-
-        transform: {
-            type: Function,
-            default: value => value
-        },
+        checked: Boolean,
 
         /**
-         * Determine if the value is checked.
+         * The checked values.
          *
          * @property String
          */
-        isChecked:{
-            type: Function,
-            default(value) {
-                if(this.checkedValues.indexOf(value) !== -1) {
-                    return true;
-                }
-
-                const matches = this.checkedValues.filter(checkedValue => {
-                    if(this.compareValues(this.transform(value), checkedValue)) {
-                        return true;
-                    }
-                });
-                
-                return matches.length > 0;
-            }
+        checkedValues: {
+            type: Array,
+            default: () => []
         },
 
+        /**
+         * The class name assigned to the control element
+         *
+         * @property String
+         */
+        defaultControlClass: {
+            type: String,
+            default: 'form-check'
+        },
 
+        /**
+         * Display the form field and label inline
+         *
+         * @property Function
+         */
+        inline: Boolean
+    },
+
+    // data: () => ({
+    //     checkedValues: []
+    // }),
+
+    computed: {
+
+        controlClasses() {
+            return {
+                [this.spacing]: !!this.spacing,
+                [this.inputClass]: !!this.inputClass,
+                ['is-valid']: !!(this.valid || this.validFeedback),
+                ['is-invalid']: !!(this.invalid || this.invalidFeedback),
+            };
+        },
+
+        computedLabelClass() {
+            return `${this.controlClass}-label`;
+        },
+
+        hash() {
+            return Math.random().toString(20).substr(2, 6);
+        },
+
+        inputClass() {
+            return `${this.controlClass}-input`;
+        },
+
+        inlineClass() {
+            return this.inline && `${this.controlClass}-inline`;
+        }
     },
 
     methods: {
-
-        stringify(value) {
-            try {
-                return JSON.stringify(value);
-            }
-            catch (e) {
-                return value;
-            }
+        isChecked(value) {
+            return Array.isArray(this.checkedValues) && this.checkedValues.indexOf(value) > -1;
         },
-
-        compareValues(a, b) {
-            if(typeof a === 'object') {
-                a = this.stringify(a);
-            }
-            
-            if(typeof b === 'object') {
-                b = this.stringify(b);
-            }
-
-            return a === b;
-        },
-
         update(event) {
-            const value = this.transform(event.target.value);
-            const checked = this.checkedValues.slice(0);
-            const index = this.checkedValues.findIndex(item => {
-                return this.compareValues(value, item);
-            });
+            console.log(this.checkedValues);
 
-            if(index === -1) {
-                checked.push(value);
+            if(!this.isChecked(event.target.value)) {
+                this.checkedValues.push(event.target.value);
             }
             else {
-                checked.splice(index, 1);
+                this.checkedValues.splice(
+                    this.checkedValues.indexOf(event.target.value), 1
+                );
             }
-            
-            this.$emit('change', checked);
-        }
 
+            this.$emit('change', this.checkedValues);
+            // this.$emit('input', event);
+        }
     }
 };
 </script>
