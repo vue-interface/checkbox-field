@@ -448,13 +448,13 @@ const __vue2_script = {
       return Array.isArray(this.checkedValues) && this.checkedValues.indexOf(value) > -1;
     },
     update(event) {
-      console.log(this.checkedValues);
       if (!this.isChecked(event.target.value)) {
         this.checkedValues.push(event.target.value);
       } else {
         this.checkedValues.splice(this.checkedValues.indexOf(event.target.value), 1);
       }
       this.$emit("change", this.checkedValues);
+      this.$emit("input", event);
     }
   }
 };

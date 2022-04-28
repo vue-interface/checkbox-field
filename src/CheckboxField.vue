@@ -136,8 +136,6 @@ export default {
             return Array.isArray(this.checkedValues) && this.checkedValues.indexOf(value) > -1;
         },
         update(event) {
-            console.log(this.checkedValues);
-
             if(!this.isChecked(event.target.value)) {
                 this.checkedValues.push(event.target.value);
             }
@@ -148,7 +146,7 @@ export default {
             }
 
             this.$emit('change', this.checkedValues);
-            // this.$emit('input', event);
+            this.$emit('input', event);
         }
     }
 };
