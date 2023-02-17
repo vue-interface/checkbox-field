@@ -13,17 +13,18 @@
 
             <div class="mb-3">colors: {{ colors }}</div>
 
-            <checkbox-field v-model="colors" name="colors[]" value="red">Red</checkbox-field>
-            <checkbox-field v-model="colors" name="colors[]" value="green">Green</checkbox-field>
-            <checkbox-field v-model="colors" name="colors[]" value="blue">Blue</checkbox-field>
-            <checkbox-field v-model="colors" name="colors[]" value="yellow" disabled>Yellow (Readonly)</checkbox-field>
+            <checkbox-field v-model="colors" label="Red" value="red"></checkbox-field>
+            <checkbox-field v-model="colors" label="Green" value="green"></checkbox-field>
+            <checkbox-field v-model="colors" label="Blue" value="blue"></checkbox-field>
+            <checkbox-field v-model="colors" label="Yellow" value="yellow"></checkbox-field>
+            <checkbox-field v-model="colors" label="Pink" value="pink" disabled>Pink (Readonly)</checkbox-field>
 
             <h5 class="text-2xl mt-6 mb-3">Inline Layout</h5>
 
-            <checkbox-field name="inline[]" label="Red" value="red" :inline="true"></checkbox-field>
-            <checkbox-field name="inline[]" label="Green" value="green" :inline="true"></checkbox-field>
-            <checkbox-field name="inline[]" label="Blue" value="blue" :inline="true"></checkbox-field>
-            <checkbox-field name="inline[]" value="yellow" readonly :inline="true">Yellow (Disabled)</checkbox-field>
+            <checkbox-field v-model="colors" label="Red" value="red" :inline="true"></checkbox-field>
+            <checkbox-field v-model="colors" label="Green" value="green" :inline="true"></checkbox-field>
+            <checkbox-field v-model="colors" label="Blue" value="blue" :inline="true"></checkbox-field>
+            <checkbox-field v-model="colors" value="yellow" readonly :inline="true">Yellow (Disabled)</checkbox-field>
 
             <hr class="my-6">
 
@@ -43,14 +44,10 @@
 
         <script type="module">
             import './index.css';
-            import Vue from 'vue/dist/vue';
-            import { CheckboxField } from './index.js';
+            import { createApp } from 'vue/dist/vue.esm-bundler.js';
+            import { CheckboxField } from './index.ts';
             
-            Vue.config.devtools = false;
-            Vue.config.productionTip = false;
-            
-            const vue = new Vue({
-                el: '#app',
+            const vue = createApp({
                 components: {
                     CheckboxField
                 },
@@ -60,6 +57,8 @@
                     };
                 }
             });
+
+            vue.mount('#app')
         </script>
     </body>
 </html>
