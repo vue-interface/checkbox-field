@@ -104,7 +104,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
         default: () => any;
     };
     modelValue: {
-        type: (StringConstructor | ObjectConstructor | ArrayConstructor | NumberConstructor)[];
+        type: (BooleanConstructor | StringConstructor | ObjectConstructor | ArrayConstructor | NumberConstructor)[];
         default: undefined;
     };
     plaintext: BooleanConstructor;
@@ -114,17 +114,23 @@ declare const _sfc_main: import("vue").DefineComponent<{
     };
     valid: BooleanConstructor;
 }, unknown, {
+    currentValue: null;
     hasChanged: boolean;
     hasFocus: boolean;
     isDirty: boolean;
-    isEmpty: boolean;
 }, {
     model: {
         get(): any;
         set(value: any): void;
     };
     id(): string | undefined;
+    isEmpty(): boolean;
+    isInvalid(): boolean;
+    isValid(): boolean;
     componentName(): any;
+    controlAttributes(): any;
+    controlClasses(): any;
+    controlSizeClass(): string;
     formGroupClasses(): {
         [x: number]: boolean;
         animated: any;
@@ -135,22 +141,19 @@ declare const _sfc_main: import("vue").DefineComponent<{
         'has-icon': boolean;
         'is-dirty': any;
         'is-empty': any;
-        'is-invalid': boolean;
-        'is-valid': boolean;
+        'is-invalid': any;
+        'is-valid': any;
     } & (false | {
         [x: string]: boolean;
     });
-    controlAttributes(): any;
-    controlClasses(): any;
-    controlSizeClass(): string;
-    invalidFeedback(): any;
-    validFeedback(): any;
     plaintextClass(): "form-control-plaintext";
 }, {
     bindEvents(el: HTMLElement): void;
     blur(): void;
     focus(): void;
     getFieldErrors(): any;
+    getModelValue(): any;
+    setModelValue(value: any): void;
 }, import("vue").DefineComponent<{
     dropShadow: {
         type: (BooleanConstructor | StringConstructor)[];
@@ -249,7 +252,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
         default: () => any;
     };
     modelValue: {
-        type: (StringConstructor | ObjectConstructor | ArrayConstructor | NumberConstructor)[];
+        type: (BooleanConstructor | StringConstructor | ObjectConstructor | ArrayConstructor | NumberConstructor)[];
         default: undefined;
     };
     plaintext: BooleanConstructor;
@@ -270,12 +273,12 @@ declare const _sfc_main: import("vue").DefineComponent<{
     onPaste?: ((...args: any[]) => any) | undefined;
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
-    activity: boolean;
-    animated: boolean;
-    controlClass: string | unknown[] | Record<string, any>;
     error: string | boolean | unknown[];
     errors: boolean | unknown[] | Record<string, any>;
     feedback: string | unknown[];
+    activity: boolean;
+    animated: boolean;
+    controlClass: string | unknown[] | Record<string, any>;
     formControlClass: string | unknown[] | Record<string, any>;
     group: boolean;
     helpText: string | number;
@@ -284,7 +287,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
     invalid: boolean;
     label: string | number;
     labelClass: string | Record<string, any>;
-    modelValue: string | number | unknown[] | Record<string, any>;
+    modelValue: string | number | boolean | unknown[] | Record<string, any>;
     plaintext: boolean;
     size: string;
     valid: boolean;
