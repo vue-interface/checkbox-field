@@ -1,3 +1,10 @@
+# [2.0.0-beta.8](https://github.com/vue-interface/checkbox-field/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2023-09-26)
+
+
+### Bug Fixes
+
+* updated tsconfig ([1673cd6](https://github.com/vue-interface/checkbox-field/commit/1673cd6b84f343350b724f14e8364b8ba4e49c26))
+
 # [2.0.0-beta.7](https://github.com/vue-interface/checkbox-field/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2023-09-26)
 
 
