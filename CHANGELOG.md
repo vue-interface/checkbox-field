@@ -1,3 +1,10 @@
+# [2.0.0-beta.7](https://github.com/vue-interface/checkbox-field/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2023-09-26)
+
+
+### Bug Fixes
+
+* issues with new form-control ([5e77bd3](https://github.com/vue-interface/checkbox-field/commit/5e77bd3039e3a6b53ab6d5f426c1ff2c2bb4ab66))
+
 # [2.0.0-beta.6](https://github.com/vue-interface/checkbox-field/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2023-09-01)
 
 
