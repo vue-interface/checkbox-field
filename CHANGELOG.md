@@ -1,3 +1,11 @@
+# [2.0.0-beta.9](https://github.com/vue-interface/checkbox-field/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2024-02-29)
+
+
+### Bug Fixes
+
+* emits ([412d6e3](https://github.com/vue-interface/checkbox-field/commit/412d6e36445814b53f8a307001d8d6f97b9681fc))
+* issue with field not showing laravel style errors ([d0d63d6](https://github.com/vue-interface/checkbox-field/commit/d0d63d6838994b3456af9f40dec1f7991bd4f73d))
+
 # [2.0.0-beta.8](https://github.com/vue-interface/checkbox-field/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2023-09-26)
 
 
