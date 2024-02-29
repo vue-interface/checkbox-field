@@ -1,3 +1,10 @@
+# [2.0.0-beta.10](https://github.com/vue-interface/checkbox-field/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2024-02-29)
+
+
+### Bug Fixes
+
+* updated to latest form control and fixed event emitters ([532d7ae](https://github.com/vue-interface/checkbox-field/commit/532d7ae75ea37dcc633b3d2b291eb8b429f856f1))
+
 # [2.0.0-beta.9](https://github.com/vue-interface/checkbox-field/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2024-02-29)
 
 
