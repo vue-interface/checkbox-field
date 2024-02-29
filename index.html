@@ -14,7 +14,15 @@
             </div>
 
             <div class="mb-4">
-                <checkbox-field v-model="value" label="Checked" checked value="1"></checkbox-field>
+                <checkbox-field
+                    v-model="value"
+                    label="Checked"
+                    value="1"
+                    @change="onChange"
+                    @click="onClick"
+                    @blur="onBlur"
+                    @focus="onFocus">
+                </checkbox-field>
             </div>
 
             <div class="bg-neutral-100 dark:bg-neutral-800 p-3 mb-3">
@@ -69,6 +77,20 @@
             const vue = createApp({
                 components: {
                     CheckboxField
+                },
+                methods: {
+                    onChange(value) {
+                        console.log('onChange', value);
+                    },
+                    onClick(e) {
+                        console.log('onClick', e);
+                    },
+                    onFocus(e) {
+                        console.log('onFocus', e);
+                    },
+                    onBlur(e) {
+                        console.log('onBlur', e);
+                    }
                 },
                 data() {
                     return {

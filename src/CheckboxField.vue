@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T, V">
-import type { CheckedFormControlProps, FormControlSlots, FormControlEvents } from '@vue-interface/form-control';
+import type { CheckedFormControlProps, FormControlEvents, FormControlSlots } from '@vue-interface/form-control';
 import { FormControlErrors, FormControlFeedback, useFormControl } from '@vue-interface/form-control';
 import { computed, onMounted, ref } from 'vue';
 
@@ -57,6 +57,7 @@ onMounted(() => {
             v-bind="controlAttributes"
             type="checkbox"
             :value="value"
+            @change="emit('change', model)"
             @click="onClick"
             @blur="onBlur"
             @focus="onFocus">
